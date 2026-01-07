@@ -53,3 +53,8 @@ bitbake myqtapp
 
 bitbake imx-image-full
 ```
+
+
+###  Reference
+
+https://devlinux.vn/blog/Package-dependencies-v%C3%A0-splitting-trong-Yocto
