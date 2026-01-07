@@ -1,0 +1,21 @@
+[Unit]
+Description=My Qt6 App
+After=weston.service
+Requires=weston.service
+
+[Service]
+Type=simple
+# Quan trọng: Chạy dưới quyền root hoặc user có quyền truy cập GPU
+User=root
+Group=root
+# Quan trọng: i.MX8 cần biết đường dẫn socket của Wayland
+Environment="XDG_RUNTIME_DIR=/run/user/0"
+Environment="QT_QPA_PLATFORM=wayland"
+# Nếu vẫn treo, thử thêm dòng này để hiện log lỗi ra console
+StandardOutput=journal+console
+StandardError=journal+console
+ExecStart=/usr/bin/myqtapp
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
