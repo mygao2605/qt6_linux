@@ -1,0 +1,31 @@
+[Unit]
+Description=My Application Service
+After=network.target
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/my-app --config /etc/my-app/config.json
+User=myuser
+WorkingDirectory=/opt/my-app
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+
+
+
+
+Các mục và khóa chính trong file .service:
+1. [Unit] (Phần thông tin đơn vị)
+Description=: Mô tả dễ đọc về dịch vụ (ví dụ: "My Web Server").
+After=network.target: Dịch vụ này sẽ chạy sau khi network đã sẵn sàng.
+Requires=: Định nghĩa các dependency cứng (nếu một service yêu cầu bị lỗi, service này cũng không chạy). 
+2. [Service] (Phần quản lý dịch vụ)
+Type=simple: Loại dịch vụ (ví dụ: simple, forking, oneshot).
+ExecStart=: Lệnh đầy đủ để khởi động dịch vụ (ví dụ: /usr/bin/python3 /opt/app/server.py).
+User=: Người dùng hệ thống chạy dịch vụ (ví dụ: User=www-data).
+WorkingDirectory=: Thư mục làm việc của ứng dụng.
+Restart=always: Luôn khởi động lại service khi nó dừng lại (có thể là on-failure, no,...).
+RestartSec=30s: Chờ 30 giây trước khi khởi động lại. 
+3. [Install] (Phần cài đặt)
+WantedBy=multi-user.target: Chỉ định target nào "muốn" service này, nghĩa là service sẽ được kích hoạt khi hệ thống đạt đến multi-user.target
