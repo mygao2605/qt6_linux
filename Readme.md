@@ -16,6 +16,10 @@ bitbake imx-image-full -c populate_sdk
 ## Step 3: Create a my workspace
 ```
 # 1. Di chuyển vào thư mục Layer (giả sử bạn đã tạo meta-my-app)
+cd ~/imx-yocto-bsp
+bitbake-layers create-layer meta-my-app
+cd build-wayland-tuna
+bitbake-layers add-layer ../meta-my-app
 cd ~/imx-yocto-bsp/meta-my-app
 
 # 2. Tạo cây thư mục theo cấu trúc chuẩn
